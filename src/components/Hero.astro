@@ -1,0 +1,104 @@
+---
+interface Props {
+  lang: "es" | "en";
+  totalProyectos: number;
+  totalTitulos: number;
+  totalCerts: number;
+}
+
+const { lang, totalProyectos, totalTitulos, totalCerts } = Astro.props;
+
+const t = {
+  es: {
+    eyebrow: "Portfolio · 2026",
+    role1: "AI Engineer",
+    role2: "Desarrollador de Software",
+    cta1: "Ver proyectos",
+    cta2: "Descargar CV",
+    s1: "Proyectos",
+    s2: "Títulos",
+    s3: "Certs",
+  },
+  en: {
+    eyebrow: "Portfolio · 2026",
+    role1: "AI Engineer",
+    role2: "Software Developer",
+    cta1: "View projects",
+    cta2: "Download CV",
+    s1: "Projects",
+    s2: "Degrees",
+    s3: "Certs",
+  },
+}[lang];
+---
+
+<div class="hero-wrap">
+  <div>
+    <p
+      style="font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--blue);margin-bottom:1.25rem"
+    >
+      {t.eyebrow}
+    </p>
+    <h1
+      class="font-serif"
+      style="font-size:clamp(2.6rem,5.5vw,4.5rem);line-height:1.06;letter-spacing:-.03em;color:var(--ink)"
+    >
+      Jose Ignacio<br /><em style="color:var(--blue)">Esteban González</em>
+    </h1>
+    <p
+      style="font-size:1rem;font-weight:300;color:var(--ink2);margin-top:1.5rem;max-width:480px;line-height:1.75"
+    >
+      {t.tagline}
+    </p>
+    <div style="display:flex;gap:.9rem;margin-top:2.5rem;flex-wrap:wrap">
+      <a href="#proyectos" class="btn-primary">{t.cta1}</a>
+      <a href={`/pdfs/cv-${lang}.pdf`} download class="btn-secondary">{t.cta2}</a>
+    </div>
+  </div>
+
+  <div
+    class="hero-stats"
+    style="display:flex;flex-direction:column;gap:1.5rem;align-items:flex-end;padding-bottom:.5rem"
+  >
+    <div style="text-align:right">
+      <div class="font-serif" style="font-size:2rem;color:var(--ink);line-height:1">
+        {totalProyectos}
+      </div>
+      <div
+        style="font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-top:2px"
+      >
+        {t.s1}
+      </div>
+    </div>
+    <div
+      class="stat-divider"
+      style="width:1px;height:50px;background:var(--border)"
+    >
+    </div>
+    <div style="text-align:right">
+      <div class="font-serif" style="font-size:2rem;color:var(--ink);line-height:1">
+        {totalTitulos}
+      </div>
+      <div
+        style="font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-top:2px"
+      >
+        {t.s2}
+      </div>
+    </div>
+    <div
+      class="stat-divider"
+      style="width:1px;height:50px;background:var(--border)"
+    >
+    </div>
+    <div style="text-align:right">
+      <div class="font-serif" style="font-size:2rem;color:var(--ink);line-height:1">
+        {totalCerts}
+      </div>
+      <div
+        style="font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-top:2px"
+      >
+        {t.s3}
+      </div>
+    </div>
+  </div>
+</div>

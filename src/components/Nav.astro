@@ -1,0 +1,92 @@
+---
+interface Props {
+  lang: "es" | "en";
+}
+const { lang } = Astro.props;
+
+const t = {
+  es: {
+    projects: "Proyectos",
+    education: "Formación",
+    repos: "Repos",
+    prompts: "Prompts",
+    articles: "Artículos",
+    switchLang: "EN",
+    switchLangHref: "/en/",
+  },
+  en: {
+    projects: "Projects",
+    education: "Education",
+    repos: "Repos",
+    prompts: "Prompts",
+    articles: "Articles",
+    switchLang: "ES",
+    switchLangHref: "/es/",
+  },
+}[lang];
+
+const base = import.meta.env.BASE_URL;
+---
+
+<nav class="nav-wrap">
+  <div class="nav-inner">
+    <a
+      href={`${base}${lang}/`}
+      class="font-serif"
+      style="font-size:1.15rem;color:var(--ink);text-decoration:none;letter-spacing:-.02em;flex-shrink:0"
+    >
+      JI<span style="color:var(--blue)">.</span> Esteban
+    </a>
+
+    <ul
+      class="nav-links-desktop"
+      style="display:flex;gap:1.75rem;list-style:none;margin:0;padding:0"
+    >
+      {[
+        ["#proyectos", t.projects],
+        ["#formacion", t.education],
+        ["#repos", t.repos],
+        ["#prompts", t.prompts],
+        ["#articulos", t.articles],
+      ].map(([href, label]) => (
+        <li>
+          <a
+            href={href}
+            style="font-size:.75rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);text-decoration:none"
+            class="nav-link"
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div style="display:flex;align-items:center;gap:.75rem;flex-shrink:0">
+      <a
+        href={`${base}${t.switchLangHref}`}
+        style="font-family:'DM Mono',monospace;font-size:.7rem;background:var(--bg2);border:1px solid var(--border);padding:3px 10px;border-radius:4px;color:var(--ink2);text-decoration:none"
+      >
+        {t.switchLang}
+      </a>
+
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        aria-label="Toggle theme"
+      >
+      </button>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .nav-link:hover { color: var(--blue) !important; }
+</style>
+
+<script>
+  const btn = document.getElementById("theme-toggle");
+  btn?.addEventListener("click", () => {
+    const isDark = document.documentElement.classList.toggle("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
+</script>

@@ -1,0 +1,66 @@
+---
+interface Props {
+  titulo: string;
+  resumen: string;
+  stack: string[];
+  repo?: string;
+  demo?: string;
+  destacado?: boolean;
+  icono?: string;
+  badge?: string;
+}
+
+const {
+  titulo,
+  resumen,
+  stack,
+  repo,
+  demo,
+  destacado = false,
+  icono = "🔧",
+  badge,
+} = Astro.props;
+---
+
+<div class={`project-card${destacado ? " featured" : ""}`}>
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem">
+    <div
+      style="width:38px;height:38px;background:var(--blue-bg);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem"
+    >
+      {icono}
+    </div>
+    {badge && <span class="badge">{badge}</span>}
+  </div>
+
+  <div style="font-size:.95rem;font-weight:600;margin-bottom:.35rem;line-height:1.3;color:var(--ink)">
+    {titulo}
+  </div>
+  <div style="font-size:.82rem;color:var(--ink2);line-height:1.6;margin-bottom:.9rem">
+    {resumen}
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.9rem">
+    {stack.map((s) => <span class="tag">{s}</span>)}
+  </div>
+
+  <div style="display:flex;gap:.75rem">
+    {
+      demo && (
+        <a href={demo} style="font-size:.73rem;color:var(--blue);text-decoration:none" class="card-link">
+          ↗ Demo
+        </a>
+      )
+    }
+    {
+      repo && (
+        <a href={repo} style="font-size:.73rem;color:var(--blue);text-decoration:none" class="card-link">
+          ⌥ GitHub
+        </a>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .card-link:hover { text-decoration: underline; }
+</style>

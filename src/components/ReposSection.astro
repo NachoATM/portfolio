@@ -1,0 +1,60 @@
+---
+interface Repo {
+  titulo: string;
+  descripcion: string;
+  repo: string;
+  lenguaje: string;
+  color: string;
+  tags: string[];
+}
+
+interface Props {
+  lang: "es" | "en";
+  repos: Repo[];
+}
+
+const { lang, repos } = Astro.props;
+
+const t = {
+  es: { section: "GitHub Repos", viewAll: "Ver perfil →" },
+  en: { section: "GitHub Repos", viewAll: "View profile →" },
+}[lang];
+---
+
+<section id="repos" class="section-wrap">
+  <div class="section-header">
+    <h2 class="font-serif" style="font-size:clamp(1.4rem,2.5vw,1.9rem);letter-spacing:-.02em;color:var(--ink)">
+      {t.section}
+    </h2>
+    <span class="section-count">{String(repos.length).padStart(2, "0")}</span>
+    <a href="https://github.com/tu-usuario" style="margin-left:auto;font-size:.75rem;color:var(--blue);text-decoration:none">
+      {t.viewAll}
+    </a>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem">
+    {
+      repos.map((repo) => (
+        <a href={repo.repo} target="_blank" rel="noopener" style="text-decoration:none">
+          <div class="repo-card">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.65rem">
+              <span style="font-family:'DM Mono',monospace;font-size:.85rem;font-weight:500;color:var(--blue)">
+                {repo.titulo}
+              </span>
+              <span style="font-size:.68rem;color:var(--ink3);display:flex;align-items:center;gap:4px">
+                <span style={`width:8px;height:8px;border-radius:50%;background:${repo.color};display:inline-block`} />
+                {repo.lenguaje}
+              </span>
+            </div>
+            <div style="font-size:.8rem;color:var(--ink2);line-height:1.55;margin-bottom:.7rem">
+              {repo.descripcion}
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:.3rem">
+              {repo.tags.map((t) => <span class="tag">{t}</span>)}
+            </div>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</section>

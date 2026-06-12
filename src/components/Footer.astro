@@ -1,0 +1,28 @@
+---
+interface Props {
+  lang: "es" | "en";
+}
+const { lang } = Astro.props;
+---
+
+<footer style="border-top:1px solid var(--border);margin-top:3rem">
+  <div
+    style="max-width:1100px;margin:0 auto;padding:2rem max(2rem,5vw);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem"
+  >
+    <span class="font-serif" style="font-size:.95rem;color:var(--ink)">
+      Jose Ignacio Esteban González
+    </span>
+    <div style="display:flex;gap:1.5rem">
+      <a href="https://github.com/tu-usuario" style="font-size:.75rem;color:var(--ink3);text-decoration:none" class="footer-link">GitHub</a>
+      <a href="https://linkedin.com/in/tu-usuario" style="font-size:.75rem;color:var(--ink3);text-decoration:none" class="footer-link">LinkedIn</a>
+      <a href="mailto:tu@email.com" style="font-size:.75rem;color:var(--ink3);text-decoration:none" class="footer-link">Email</a>
+    </div>
+    <span style="font-family:'DM Mono',monospace;font-size:.62rem;color:var(--ink3)">
+      © {new Date().getFullYear()} · Astro + Tailwind
+    </span>
+  </div>
+</footer>
+
+<style>
+  .footer-link:hover { color: var(--blue) !important; }
+</style>
