@@ -3,6 +3,7 @@ import { defineCollection, z } from "astro:content";
 const proyectos = defineCollection({
   type: "content",
   schema: z.object({
+    slug: z.string().optional(),
     idioma: z.enum(["es", "en"]),
     titulo: z.string(),
     fecha: z.date(),
@@ -19,6 +20,7 @@ const proyectos = defineCollection({
 const titulos = defineCollection({
   type: "content",
   schema: z.object({
+    slug: z.string().optional(),
     idioma: z.enum(["es", "en"]),
     titulo: z.string(),
     institucion: z.string(),
@@ -31,6 +33,7 @@ const titulos = defineCollection({
 const certificaciones = defineCollection({
   type: "content",
   schema: z.object({
+    slug: z.string().optional(),
     idioma: z.enum(["es", "en"]),
     titulo: z.string(),
     emisor: z.string(),
@@ -46,6 +49,7 @@ const certificaciones = defineCollection({
 const repos = defineCollection({
   type: "content",
   schema: z.object({
+    slug: z.string().optional(),
     idioma: z.enum(["es", "en"]),
     titulo: z.string(),
     descripcion: z.string(),
@@ -60,6 +64,7 @@ const repos = defineCollection({
 const prompts = defineCollection({
   type: "content",
   schema: z.object({
+    slug: z.string().optional(),
     idioma: z.enum(["es", "en"]),
     titulo: z.string(),
     categoria: z.string(),
@@ -73,6 +78,7 @@ const prompts = defineCollection({
 const articulos = defineCollection({
   type: "content",
   schema: z.object({
+    slug: z.string().optional(),
     idioma: z.enum(["es", "en"]),
     titulo: z.string(),
     fecha: z.date(),
