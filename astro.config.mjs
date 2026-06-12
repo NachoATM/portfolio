@@ -3,7 +3,7 @@ import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 
 export default defineConfig({
-  site: "https://github.com/NachoATM",
+  site: "https://nachoatm.github.io",
   base: "/portfolio",
   integrations: [tailwind(), react()],
   i18n: {

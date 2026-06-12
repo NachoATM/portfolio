@@ -1,5 +1,4 @@
 ---
-slug: "aws-cloud-practitioner"
 idioma: "es"
 titulo: "AWS Cloud Practitioner"
 emisor: "Amazon Web Services"
