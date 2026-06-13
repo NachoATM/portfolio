@@ -75,7 +75,9 @@ const articulos = defineCollection({
   schema: z.object({
     idioma: z.enum(["es", "en"]),
     titulo: z.string(),
+    fuente: z.string(),
     fecha: z.date(),
+    url: z.string().url(),
     resumen: z.string(),
     tags: z.array(z.string()),
     imagen: z.string().optional(),

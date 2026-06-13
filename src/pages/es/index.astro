@@ -7,6 +7,7 @@ import FormacionSection from "../../components/FormacionSection.astro";
 import ReposSection from "../../components/ReposSection.astro";
 import EmptySection from "../../components/EmptySection.astro";
 import PromptCard from "../../components/PromptCard.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
 
 const lang = "es";
 
@@ -137,7 +138,18 @@ const sortedCerts = certs.sort((a, b) => b.data.fecha.getTime() - a.data.fecha.g
           </h2>
           <span class="section-count">{String(articulos.length).padStart(2, "0")}</span>
         </div>
-        {/* TODO: ArticleCard grid */}
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.15rem">
+          {articulos.map((a) => (
+            <ArticleCard
+              titulo={a.data.titulo}
+              fuente={a.data.fuente}
+              fecha={a.data.fecha}
+              url={a.data.url}
+              resumen={a.data.resumen}
+              tags={a.data.tags}
+            />
+          ))}
+        </div>
       </section>
     ) : (
       <EmptySection

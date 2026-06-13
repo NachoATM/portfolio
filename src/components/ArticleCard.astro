@@ -1,0 +1,99 @@
+---
+interface Props {
+  titulo: string;
+  fuente: string;
+  fecha: Date;
+  url: string;
+  resumen: string;
+  tags: string[];
+}
+
+const { titulo, fuente, fecha, url, resumen, tags } = Astro.props;
+
+const year = fecha.getFullYear();
+const month = fecha.toLocaleDateString("es-ES", { month: "short" });
+
+// Map fuente → color accent
+const sourceColors: Record<string, string> = {
+  "Nature Scientific Reports": "#e8281f",
+  "Frontiers in Artificial Intelligence": "#f47920",
+  "PubMed Central (PMC)": "#336699",
+  "MDPI Energies": "#00a99d",
+};
+const accentColor = sourceColors[fuente] ?? "var(--green)";
+---
+
+<a href={url} target="_blank" rel="noopener" class="article-card-link">
+  <article class="article-card">
+    <!-- Source badge + date -->
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.85rem;gap:.5rem">
+      <span
+        class="article-source"
+        style={`background:color-mix(in srgb,${accentColor} 10%,var(--bg2));color:${accentColor};border-color:color-mix(in srgb,${accentColor} 25%,transparent)`}
+      >
+        {fuente}
+      </span>
+      <span style="font-family:'DM Mono',monospace;font-size:.62rem;color:var(--ink3);flex-shrink:0">
+        {month} {year}
+      </span>
+    </div>
+
+    <!-- Title -->
+    <h3 style="font-size:.92rem;font-weight:600;color:var(--ink);line-height:1.4;margin-bottom:.65rem">
+      {titulo}
+    </h3>
+
+    <!-- Summary -->
+    <p style="font-size:.81rem;color:var(--ink2);line-height:1.7;margin-bottom:.9rem">
+      {resumen}
+    </p>
+
+    <!-- Tags + arrow -->
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap">
+      <div style="display:flex;flex-wrap:wrap;gap:.3rem">
+        {tags.map((t) => <span class="tag">{t}</span>)}
+      </div>
+      <span style="font-size:.72rem;color:var(--green-text);flex-shrink:0;display:flex;align-items:center;gap:.25rem" class="article-arrow">
+        Leer
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+      </span>
+    </div>
+  </article>
+</a>
+
+<style>
+  .article-card-link { text-decoration: none; display: block; }
+
+  .article-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.35rem;
+    transition: border-color .25s, transform .25s, box-shadow .25s;
+    height: 100%;
+  }
+  .article-card:hover {
+    border-color: color-mix(in srgb, var(--green) 40%, var(--border));
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px -8px rgba(30,92,64,.15);
+  }
+  .article-card:hover .article-arrow {
+    gap: .45rem;
+    transition: gap .2s;
+  }
+
+  .article-source {
+    font-family: "DM Mono", monospace;
+    font-size: .58rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .article-arrow { transition: gap .2s; }
+</style>
