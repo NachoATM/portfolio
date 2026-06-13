@@ -1,7 +1,7 @@
 ---
 idioma: "es"
 titulo: "Event-Planner-Agents"
-descripcion: "Sistema multiagente para planificación de eventos."
+descripcion: "Planificador de eventos que, a partir de una petición escrita en lenguaje natural produce un plan completo"
 repo: "https://github.com/NachoATM/Event-Planner-Agents"
 lenguaje: "Python"
 color: "#3572A5"

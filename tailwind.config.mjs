@@ -6,16 +6,15 @@ export default {
     extend: {
       fontFamily: {
         serif: ['"DM Serif Display"', "serif"],
-        sans: ["Outfit", "sans-serif"],
-        mono: ['"DM Mono"', "monospace"],
+        sans:  ["Inter", "sans-serif"],
+        mono:  ['"DM Mono"', "monospace"],
       },
       colors: {
-        blue: {
-          DEFAULT: "#1a6fd4",
-          light: "#e8f1fb",
-          mid: "#378ADD",
-          dark: "#4d9bec",
-          "dark-bg": "#0d2a4a",
+        green: {
+          DEFAULT: "#1E5C40",
+          dark:    "#123D2A",
+          light:   "#8FD6A8",
+          bg:      "#e5f3eb",
         },
       },
     },

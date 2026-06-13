@@ -25,67 +25,128 @@ const { lang, titulos, certs } = Astro.props;
 
 const t = {
   es: { section: "Formación", titulos: "Títulos académicos", certs: "Certificaciones" },
-  en: { section: "Education", titulos: "Academic degrees", certs: "Certifications" },
+  en: { section: "Education", titulos: "Academic degrees",   certs: "Certifications" },
 }[lang];
+
+// Inline brand logos — color-accurate, crisp at any size
+const brandLogos: Record<string, { bg: string; border: string; html: string }> = {
+  "Amazon Web Services": {
+    bg: "#ffffff",
+    border: "#e8e8e8",
+    html: `<svg viewBox="0 0 64 40" xmlns="http://www.w3.org/2000/svg" width="36" height="22">
+      <text x="2" y="28" font-family="Arial Black,Arial,sans-serif" font-size="22" font-weight="900" fill="#FF9900" letter-spacing="-1">aws</text>
+      <path d="M10 34 Q32 41 54 34" stroke="#FF9900" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path d="M48 30 L54 34 L48 38" stroke="#FF9900" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`,
+  },
+  "MIT": {
+    bg: "#A31F34",
+    border: "#8a1a2c",
+    html: `<svg viewBox="0 0 48 24" xmlns="http://www.w3.org/2000/svg" width="36" height="18">
+      <text x="24" y="20" font-family="Arial Black,Arial,sans-serif" font-size="20" font-weight="900" fill="white" text-anchor="middle" letter-spacing="1">MIT</text>
+    </svg>`,
+  },
+  "DataCamp": {
+    bg: "#05192D",
+    border: "#0a2d4a",
+    html: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
+      <path fill="#03EF62" d="M22.4 17.9L14 13V4.7c0-.5-.6-.8-1-.6L6 7.8c-.3.2-.5.5-.5.9v6.7L3 17c-.4.3-.4.9 0 1.2l2.9 1.7 7.4 4.2c.3.2.7.2 1 0l2.9-1.7 7.3-4.2c.5-.3.5-1 0-1.3zM9 20.6l-2.4-1.4V10.8l5.5-3.2v5.7l-3.1 1.7v5.6z"/>
+    </svg>`,
+  },
+  "University of Michigan": {
+    bg: "#00274C",
+    border: "#001e3a",
+    html: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+      <text x="16" y="26" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="#FFCB05" text-anchor="middle">M</text>
+    </svg>`,
+  },
+};
+
+function getBrand(emisor: string, logo: string) {
+  return brandLogos[emisor] ?? brandLogos[logo] ?? null;
+}
 ---
 
 <section id="formacion" class="section-wrap">
-  <div class="section-header">
+  <div class="section-header reveal">
     <h2 class="font-serif" style="font-size:clamp(1.4rem,2.5vw,1.9rem);letter-spacing:-.02em;color:var(--ink)">
       {t.section}
     </h2>
   </div>
 
-  <!-- Títulos — prominent -->
-  <div style="margin-bottom:2rem">
-    <p style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.85rem;padding-bottom:.5rem;border-bottom:1px dashed var(--border)">
+  <!-- Títulos -->
+  <div style="margin-bottom:2.5rem">
+    <p style="font-family:'DM Mono',monospace;font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px dashed var(--border);display:flex;align-items:center;gap:.5rem">
+      <span style="display:inline-block;width:14px;height:1.5px;background:var(--green);border-radius:2px;flex-shrink:0"></span>
       {t.titulos}
+      <span class="section-count" style="margin-left:auto">{String(titulos.length).padStart(2,"0")}</span>
     </p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem">
-      {
-        titulos.map((item) => (
-          <div class="titulo-card">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;margin-bottom:.5rem">
-              <span style="font-size:.92rem;font-weight:600;color:var(--ink);line-height:1.3">
-                {item.titulo}
-              </span>
-              <span style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--ink3);flex-shrink:0;margin-top:2px">
-                {item.fecha_inicio && item.fecha_inicio.getFullYear() !== item.fecha.getFullYear()
-                  ? `${item.fecha_inicio.getFullYear()} – ${item.fecha.getFullYear()}`
-                  : item.fecha.getFullYear()}
-              </span>
-            </div>
-            <div style="font-size:.78rem;color:var(--ink2);margin-bottom:.4rem">{item.institucion}</div>
-            <span class="badge">{item.categoria}</span>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.1rem">
+      {titulos.map((item, i) => (
+        <div class="titulo-card reveal" style={`transition-delay:${i * 60}ms`}>
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;margin-bottom:.55rem">
+            <span style="font-size:.9rem;font-weight:600;color:var(--ink);line-height:1.35">
+              {item.titulo}
+            </span>
+            <span style="font-family:'DM Mono',monospace;font-size:.62rem;color:var(--green-text);background:var(--green-bg);padding:2px 7px;border-radius:3px;flex-shrink:0;margin-top:2px;border:1px solid color-mix(in srgb,var(--green) 15%,transparent)">
+              {item.fecha_inicio && item.fecha_inicio.getFullYear() !== item.fecha.getFullYear()
+                ? `${item.fecha_inicio.getFullYear()} – ${item.fecha.getFullYear()}`
+                : item.fecha.getFullYear()}
+            </span>
           </div>
-        ))
-      }
+          <div style="font-size:.78rem;color:var(--ink2);margin-bottom:.55rem;line-height:1.4">{item.institucion}</div>
+          <span class="badge">{item.categoria}</span>
+        </div>
+      ))}
     </div>
   </div>
 
-  <!-- Certs — subdued -->
+  <!-- Certificaciones -->
   <div>
-    <p style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.85rem;padding-bottom:.5rem;border-bottom:1px dashed var(--border)">
+    <p style="font-family:'DM Mono',monospace;font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px dashed var(--border);display:flex;align-items:center;gap:.5rem">
+      <span style="display:inline-block;width:14px;height:1.5px;background:var(--green);border-radius:2px;flex-shrink:0"></span>
       {t.certs}
+      <span class="section-count" style="margin-left:auto">{String(certs.length).padStart(2,"0")}</span>
     </p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.85rem">
-      {
-        certs.map((item) => (
-          <div class="cert-card">
-            <div style="width:36px;height:36px;border-radius:6px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:.6rem;font-weight:500;color:var(--ink3);flex-shrink:0;text-align:center;line-height:1.2">
-              {item.logo || item.emisor.slice(0, 3).toUpperCase()}
-            </div>
-            <div>
-              <div style="font-size:.82rem;font-weight:500;line-height:1.3;margin-bottom:.2rem;color:var(--ink2)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:.9rem">
+      {certs.map((item, i) => {
+        const brand = getBrand(item.emisor, item.logo);
+        return (
+          <div class="cert-card reveal" style={`transition-delay:${i * 50}ms`}>
+            {brand ? (
+              <div
+                class="cert-logo"
+                style={`background:${brand.bg};border-color:${brand.border};`}
+                set:html={brand.html}
+              />
+            ) : (
+              <div class="cert-logo">
+                {(item.logo || item.emisor.slice(0, 3)).toUpperCase()}
+              </div>
+            )}
+            <div style="min-width:0">
+              <div style="font-size:.83rem;font-weight:500;line-height:1.35;margin-bottom:.22rem;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
                 {item.titulo}
               </div>
-              <div style="font-size:.7rem;color:var(--ink3)">
-                {item.emisor} · {item.fecha.getFullYear()}
+              <div style="font-size:.7rem;color:var(--ink3);display:flex;align-items:center;gap:.35rem">
+                {item.emisor}
+                <span style="opacity:.4">·</span>
+                {item.fecha.getFullYear()}
+                {item.enlace_verificacion && (
+                  <a
+                    href={item.enlace_verificacion}
+                    target="_blank"
+                    rel="noopener"
+                    style="color:var(--green-text);text-decoration:none;font-size:.65rem;margin-left:auto;flex-shrink:0"
+                  >
+                    ↗
+                  </a>
+                )}
               </div>
             </div>
           </div>
-        ))
-      }
+        );
+      })}
     </div>
   </div>
 </section>

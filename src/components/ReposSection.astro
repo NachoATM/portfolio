@@ -22,31 +22,44 @@ const t = {
 ---
 
 <section id="repos" class="section-wrap">
-  <div class="section-header">
+  <div class="section-header reveal">
     <h2 class="font-serif" style="font-size:clamp(1.4rem,2.5vw,1.9rem);letter-spacing:-.02em;color:var(--ink)">
       {t.section}
     </h2>
     <span class="section-count">{String(repos.length).padStart(2, "0")}</span>
-    <a href="https://github.com/tu-usuario" style="margin-left:auto;font-size:.75rem;color:var(--blue);text-decoration:none">
+    <a
+      href="https://github.com/NachoATM"
+      target="_blank"
+      rel="noopener"
+      style="margin-left:auto;font-size:.75rem;color:var(--green-text);text-decoration:none;transition:opacity .2s"
+      class="repo-profile-link"
+    >
       {t.viewAll}
     </a>
   </div>
 
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem">
     {
-      repos.map((repo) => (
-        <a href={repo.repo} target="_blank" rel="noopener" style="text-decoration:none">
+      repos.map((repo, i) => (
+        <a
+          href={repo.repo}
+          target="_blank"
+          rel="noopener"
+          style="text-decoration:none"
+          class={`reveal`}
+          style={`transition-delay:${i * 60}ms`}
+        >
           <div class="repo-card">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.65rem">
-              <span style="font-family:'DM Mono',monospace;font-size:.85rem;font-weight:500;color:var(--blue)">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem">
+              <span style="font-family:'DM Mono',monospace;font-size:.84rem;font-weight:500;color:var(--green-text)">
                 {repo.titulo}
               </span>
-              <span style="font-size:.68rem;color:var(--ink3);display:flex;align-items:center;gap:4px">
-                <span style={`width:8px;height:8px;border-radius:50%;background:${repo.color};display:inline-block`} />
+              <span style="font-size:.67rem;color:var(--ink3);display:flex;align-items:center;gap:5px;flex-shrink:0;margin-left:.5rem">
+                <span style={`width:8px;height:8px;border-radius:50%;background:${repo.color};display:inline-block;flex-shrink:0`} />
                 {repo.lenguaje}
               </span>
             </div>
-            <div style="font-size:.8rem;color:var(--ink2);line-height:1.55;margin-bottom:.7rem">
+            <div style="font-size:.8rem;color:var(--ink2);line-height:1.6;margin-bottom:.75rem">
               {repo.descripcion}
             </div>
             <div style="display:flex;flex-wrap:wrap;gap:.3rem">
@@ -58,3 +71,7 @@ const t = {
     }
   </div>
 </section>
+
+<style>
+  .repo-profile-link:hover { opacity: .75; }
+</style>

@@ -24,6 +24,8 @@ const {
     <meta name="description" content={description} />
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
     <Nav lang={lang} />
@@ -33,11 +35,27 @@ const {
     <Footer lang={lang} />
 
     <script is:inline>
-      // Apply saved theme on load, before paint
+      // Apply saved theme before paint
       const saved = localStorage.getItem("theme");
       const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
       const theme = saved || (prefersDark ? "dark" : "light");
       document.documentElement.classList.toggle("dark", theme === "dark");
+    </script>
+
+    <script is:inline>
+      // Scroll reveal — observe all .reveal elements
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
     </script>
   </body>
 </html>
