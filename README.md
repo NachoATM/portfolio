@@ -1,45 +1,64 @@
-# Portfolio — Jose Ignacio Esteban González
+# 💼 Portfolio Personal — Jose Ignacio Esteban González
 
-Portfolio personal de AI Engineer, Data Scientist y desarrollador Odoo. Construido con Astro, Tailwind CSS y contenido en Markdown.
+¡Bienvenido a mi portfolio personal! Este proyecto centraliza mi trayectoria como **AI Engineer, Data Scientist y Desarrollador Odoo**. Está diseñado para ser ultra rápido, minimalista, totalmente accesible y bilingüe.
 
-**Demo:** [nachoatm.github.io/portfolio](https://nachoatm.github.io/portfolio)
-
----
-
-## Stack
-
-| Tecnología | Uso |
-|---|---|
-| [Astro 4](https://astro.build) | Framework SSG |
-| [Tailwind CSS 3](https://tailwindcss.com) | Estilos |
-| [React 18](https://react.dev) | Islas interactivas (si aplica) |
-| Google Fonts — Inter + DM Serif + DM Mono | Tipografía |
+🚀 **Demostración en vivo:** [nachoatm.github.io/portfolio](https://nachoatm.github.io/portfolio)
 
 ---
 
-## Inicio rápido
+## 🛠️ Stack Tecnológico
 
-```bash
+El sitio está construido utilizando arquitectura de islas para un rendimiento óptimo y carga instantánea.
+
+| Tecnología | Rol en el proyecto |
+| :--- | :--- |
+| **[Astro 4](https://astro.build)** | Framework principal (Generación de Sitios Estáticos - SSG) |
+| **[Tailwind CSS 3](https://tailwindcss.com)** | Estilos basados en utilidades y diseño responsivo |
+| **[React 18](https://react.dev)** | Componentes interactivos aislados (cuando aplica) |
+| **Google Fonts** | Tipografía: `Inter` (cuerpo), `DM Serif` (títulos), `DM Mono` (código) |
+
+---
+
+## 💻 Inicio Rápido
+
+### Requisitos previos
+Asegúrate de tener instalado **Node.js** (versión 18 o superior) y **npm**.
+
+### Instalación y desarrollo
+1. Clona el repositorio y entra en el directorio.
+2. Instala las dependencias y levanta el servidor local:
+
+
+# Instalar dependencias
 npm install
-npm run dev        # http://localhost:4321/portfolio
-npm run build      # genera /dist
-npm run preview    # previsualiza el build
-```
+
+# Iniciar servidor de desarrollo en http://localhost:4321/portfolio
+npm run dev
+
+# Compilar el proyecto para producción (genera la carpeta /dist)
+npm run build
+
+# Previsualizar el build de producción localmente
+npm run preview
+
+
 
 ---
 
-## Estructura
+## 📂 Estructura del Proyecto
 
-```
+El proyecto sigue una estructura limpia donde el contenido está estrictamente separado de la lógica de renderizado.
+
+text
 src/
-├── content/           ← TODO el contenido está aquí
-│   ├── proyectos/     → nombre.es.md + nombre.en.md
-│   ├── titulos/       → nombre.es.md + nombre.en.md
-│   ├── certificaciones/
-│   ├── repos/
-│   ├── prompts/
-│   └── articulos/
-├── components/
+├── content/               ← 📝 TODO EL CONTENIDO (Markdown)
+│   ├── proyectos/         → nombre.es.md | nombre.en.md
+│   ├── titulos/           → Académicos / Bootcamps
+│   ├── certificaciones/   → Certificados profesionales
+│   ├── repos/             → Repositorios destacados
+│   ├── prompts/           → Ingeniería de prompts útil
+│   └── articulos/         → Publicaciones o lecturas recomendadas
+├── components/            ← 🧱 Componentes modulares de Astro
 │   ├── Hero.astro
 │   ├── Nav.astro
 │   ├── ProjectCard.astro
@@ -48,111 +67,144 @@ src/
 │   ├── FormacionSection.astro
 │   ├── ReposSection.astro
 │   └── Footer.astro
-├── layouts/
+├── layouts/               ← 📐 Plantilla base del sitio
 │   └── Base.astro
-├── pages/
-│   ├── es/index.astro
-│   └── en/index.astro
-└── styles/
+├── pages/                 ← 🌐 Rutas del sitio por idioma
+│   ├── es/index.astro     → Versión en Español
+│   └── en/index.astro     → Versión en Inglés
+└── styles/                ← 🎨 Estilos globales
     └── global.css
 public/
-├── logos/             ← SVGs de marcas (AWS, MIT, DataCamp…)
-└── pdfs/              ← cv-es.pdf + cv-en.pdf
-```
+├── logos/                 ← SVGs de marcas (AWS, MIT, DataCamp…)
+└── pdfs/                  ← Currículums descargables (cv-es.pdf / cv-en.pdf)
+
+
 
 ---
 
-## Añadir contenido
+## ✍️ Gestión de Contenido (Añadir nuevos elementos)
 
-Cada sección usa pares de archivos Markdown (`nombre.es.md` / `nombre.en.md`). Crea los dos y rellena el frontmatter según la plantilla de cada tipo.
+El contenido se gestiona en **pares de archivos Markdown** (`.es.md` y `.en.md`). Para añadir un elemento, crea ambos archivos en su respectiva carpeta de `src/content/` y rellena el *frontmatter* siguiendo estas plantillas:
 
-### Proyecto
+### 🚀 Proyectos (`src/content/proyectos/`)
 
-```yaml
-idioma: "es"
-titulo: "Nombre del proyecto"
+yaml
+idioma: "es" # "es" o "en"
+titulo: "Análisis de Churn con LLMs"
 fecha: 2026-01-15
-resumen: "Una frase de qué hace"
-stack: ["Python", "Scikit-learn"]
-repo: "https://github.com/usuario/repo"   # opcional
-demo: "https://demo.com"                   # opcional
-destacado: false
-icono: "brain"   # zap | brain | home | activity | bar-chart | cpu | database | network | code | trending-up | layers
-badge: "TFM"     # opcional
-```
+resumen: "Sistema predictivo de fuga de clientes integrando embeddings y clasificadores tradicionales."
+stack: ["Python", "Scikit-learn", "OpenAI API"]
+repo: "[https://github.com/nachoatm/repo](https://github.com/nachoatm/repo)"   # Opcional
+demo: "[https://demo.com](https://demo.com)"                   # Opcional
+destacado: true                            # true para fijarlo en la home
+icono: "brain"                             # Ver catálogo de iconos abajo
+badge: "TFM"                               # Opcional (ej: "Proyecto", "Freelance")
 
-### Certificación
 
-```yaml
+
+### 📜 Certificaciones (`src/content/certificaciones/`)
+
+yaml
 idioma: "es"
-titulo: "Nombre de la certificación"
-emisor: "Amazon Web Services"
+titulo: "AWS Certified Solutions Architect"
+emisor: "Amazon Web Services"               # Debe coincidir exactamente con la clave de brandLogos
 fecha: 2025-01-15
 categoria: "Cloud"
 logo: "AWS"
-enlace_verificacion: "https://..."   # opcional
-credencial_id: ""                    # opcional
-```
+enlace_verificacion: "https://..."         # Opcional
+credencial_id: "AWS-12345"                 # Opcional
 
-### Artículo
 
-```yaml
+
+### 📰 Artículos (`src/content/artículos/`)
+
+yaml
 idioma: "es"
-titulo: "Título del artículo"
-fuente: "Nature Scientific Reports"
+titulo: "El futuro de los Agentes Autónomos en Odoo"
+fuente: "Medium / Propio"
 fecha: 2026-01-01
 url: "https://..."
-resumen: "Tu comentario personal sobre por qué es relevante"
-tags: ["Machine Learning", "Python"]
-```
+resumen: "Análisis sobre cómo los agentes de IA pueden automatizar flujos de trabajo complejos en ERPs."
+tags: ["Odoo", "AI Agents", "Python"]
 
-### Prompt
 
-```yaml
+
+### 💡 Prompts (`src/content/prompts/`)
+
+yaml
 idioma: "es"
-titulo: "Nombre del prompt"
+titulo: "Generador de Test Unitarios para Odoo"
 categoria: "Data Engineering"
-descripcion: "Qué hace en una frase"
-tags: ["Python", "Spark"]
-```
-El cuerpo del Markdown es el texto completo del prompt (se muestra expandible con botón de copiar).
+descripcion: "Estructura prompts para forzar a la IA a escribir tests de Odoo siguiendo las buenas prácticas oficiales."
+tags: ["Odoo", "Testing", "Prompting"]
+
+
+
+> **Nota:** El cuerpo del archivo Markdown (`.md`) de los prompts se convertirá automáticamente en el texto copiable de la tarjeta en la interfaz.
 
 ---
 
-## Logos de certificaciones
+## 🎨 Personalización de Estilos y Visuales
 
-Los logos inline están definidos en `FormacionSection.astro` en el objeto `brandLogos`. Para añadir una nueva marca:
+### Catálogo de Iconos para Proyectos
 
-1. Añade una entrada en `brandLogos` con `bg`, `border` y `html` (SVG inline)
-2. La clave es el valor exacto del campo `emisor` en el `.md`
+El campo `icono` del Frontmatter acepta los siguientes identificadores definidos por Lucide/Estilos inline:
+
+* `zap` | `brain` | `home` | `activity` | `bar-chart`
+* `cpu` | `database` | `network` | `code` | `trending-up` | `layers`
+
+### Añadir nuevos Logos de Certificadoras
+
+Los logos de los emisores están embebidos como SVGs para evitar peticiones HTTP innecesarias. Para añadir uno nuevo:
+
+1. Abre `src/components/FormacionSection.astro`.
+2. Localiza el objeto `brandLogos`.
+3. Añade tu nueva marca. La **clave** debe coincidir exactamente con el campo `emisor` del Markdown:
+
+javascript
+   MiEmisor: {
+     bg: 'bg-blue-50 dark:bg-blue-950/30',
+     border: 'border-blue-100 dark:border-blue-900/50',
+     html: '<svg>...</svg>' // Tu SVG inline aquí
+   }
+
+
+
+### Paleta de Colores Corporativa
+
+El diseño se rige bajo una identidad visual basada en verdes botánicos/tecnológicos configurados mediante variables CSS en `src/styles/global.css`:
+
+| Variable | Valor Hex | Uso Principal |
+| --- | --- | --- |
+| `--green` | `#1E5C40` | Color de acento principal, botones y enlaces |
+| `--green-dark` | `#123D2A` | Estados *hover* de botones principales |
+| `--green-light` | `#8FD6A8` | Gradientes decorativos y acentos en modo oscuro |
+| `--green-bg` | `#e5f3eb` | Fondos suaves para Badges, etiquetas e iconos |
 
 ---
 
-## i18n
+## 🌐 Internacionalización (i18n)
 
-El sitio es bilingüe (ES/EN). Cada archivo de contenido necesita versión `.es.md` y `.en.md`. Las páginas filtran por el campo `idioma` del frontmatter.
+El sitio soporta **Español (ES)** e **Inglés (EN)** de forma nativa a través del enrutamiento de carpetas de Astro (`src/pages/es/` y `src/pages/en/`).
+
+* Cada vez que agregues un contenido en un idioma, **es obligatorio** crear su contraparte en el otro idioma para evitar inconsistencias en el renderizado de las páginas.
+* Las colecciones de Astro filtran automáticamente los archivos usando el parámetro `idioma` definido en el frontmatter.
 
 ---
 
-## Deploy
+## 🚀 Despliegue Continuo (CI/CD)
 
-El deploy es automático vía GitHub Actions al hacer push a `main`.
+El proyecto cuenta con un flujo de trabajo automatizado mediante **GitHub Actions**.
 
-```bash
+Cada vez que realizas un `push` a la rama `main`, el archivo `.github/workflows/deploy.yml` se activa automáticamente para compilar el sitio con Astro y desplegarlo en **GitHub Pages**.
+
+
+# Pasos para actualizar el portfolio en vivo:
 git add .
-git commit -m "feat: ..."
-git push
-```
+git commit -m "feat: añade nuevo proyecto de NLP"
+git push origin main
 
-El workflow (`.github/workflows/deploy.yml`) construye el sitio y lo publica en GitHub Pages. La URL final es `https://nachoatm.github.io/portfolio`.
 
----
 
-## Paleta de colores
 
-| Variable | Valor | Uso |
-|---|---|---|
-| `--green` | `#1E5C40` | Acento principal |
-| `--green-dark` | `#123D2A` | Hover de botones |
-| `--green-light` | `#8FD6A8` | Gradientes, modo oscuro |
-| `--green-bg` | `#e5f3eb` | Fondos de badges e iconos |
+
