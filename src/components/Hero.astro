@@ -13,10 +13,10 @@ const t = {
   es: {
     eyebrow:  "Portfolio · 2026",
     role1:    "AI Engineer",
-    role1:    "Desarrollador de Software",
-    tagline:  "Especialista en Inteligencia Artificial and Big Data. Construyendo soluciones tecnológicas de alto impacto.",
+    role2:    "Desarrollador de Software",
+    tagline:  "Especialista en Inteligencia Artificial, Big Data y desarrollo de software. Construyendo soluciones tecnológicas de alto impacto.",
     cta1:     "Ver proyectos",
-    cta2:     "Descargar CV",
+    cta2:     "Ver CV",
     s1:       "Proyectos",
     s2:       "Títulos",
     s3:       "Certs",
@@ -24,10 +24,10 @@ const t = {
   en: {
     eyebrow:  "Portfolio · 2026",
     role1:    "AI Engineer",
-    role1:    "Software Developer",
-    tagline:  "Specialist in Artificial Intelligence and Big Data. Building high-impact technology solutions.",
+    role2:    "Software Developer",
+    tagline:  "Specialist in Artificial Intelligence, Big Data and software development. Building high-impact technology solutions.",
     cta1:     "View projects",
-    cta2:     "Download CV",
+    cta2:     "View CV",
     s1:       "Projects",
     s2:       "Degrees",
     s3:       "Certs",
@@ -61,12 +61,11 @@ const t = {
 
       <!-- Role badges -->
       <div class="hero-anim-3" style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.1rem">
-        <span style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.06em;text-transform:uppercase;background:var(--green-bg);color:var(--green-text);padding:4px 10px;border-radius:5px;border:1px solid color-mix(in srgb,var(--green) 20%,transparent)">
-          {t.role1}
-        </span>
-        <span style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.06em;text-transform:uppercase;background:var(--bg2);color:var(--ink3);padding:4px 10px;border-radius:5px;border:1px solid var(--border)">
-          {t.role2}
-        </span>
+        {[t.role1, t.role2].map((role) => (
+          <span style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.06em;text-transform:uppercase;background:var(--green-bg);color:var(--green-text);padding:4px 10px;border-radius:5px;border:1px solid color-mix(in srgb,var(--green) 20%,transparent)">
+            {role}
+          </span>
+        ))}
       </div>
 
       <!-- Tagline -->
@@ -83,9 +82,9 @@ const t = {
           {t.cta1}
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:.85"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
-        <a href={`${base}pdfs/cv-${lang}.pdf`} download class="btn-secondary">
+        <a href={`${base}pdfs/cv-${lang}.pdf`} target="_blank" rel="noopener" class="btn-secondary">
           {t.cta2}
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.7"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.7"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
         </a>
       </div>
     </div>
