@@ -6,6 +6,7 @@ import ProjectCard from "../../components/ProjectCard.astro";
 import FormacionSection from "../../components/FormacionSection.astro";
 import ReposSection from "../../components/ReposSection.astro";
 import EmptySection from "../../components/EmptySection.astro";
+import PromptCard from "../../components/PromptCard.astro";
 
 const lang = "en";
 
@@ -97,6 +98,19 @@ const sortedCerts = certs.sort((a, b) => b.data.fecha.getTime() - a.data.fecha.g
           <h2 class="font-serif" style="font-size:clamp(1.4rem,2.5vw,1.9rem);letter-spacing:-.02em;color:var(--ink)">
             Prompts
           </h2>
+          <span class="section-count">{String(prompts.length).padStart(2, "0")}</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.15rem">
+          {prompts.map((p) => (
+            <PromptCard
+              titulo={p.data.titulo}
+              categoria={p.data.categoria}
+              descripcion={p.data.descripcion}
+              tags={p.data.tags}
+              github={p.data.github}
+              demo={p.data.demo}
+            />
+          ))}
         </div>
       </section>
     ) : (
