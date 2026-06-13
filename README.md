@@ -49,95 +49,44 @@ npm run preview
 
 El proyecto sigue una estructura limpia donde el contenido está estrictamente separado de la lógica de renderizado.
 
-text
+
+```bash
 src/
-├── content/               ← 📝 TODO EL CONTENIDO (Markdown)
-│   ├── proyectos/         → nombre.es.md | nombre.en.md
-│   ├── titulos/           → Académicos / Bootcamps
-│   ├── certificaciones/   → Certificados profesionales
-│   ├── repos/             → Repositorios destacados
-│   ├── prompts/           → Ingeniería de prompts útil
-│   └── articulos/         → Publicaciones o lecturas recomendadas
-├── components/            ← 🧱 Componentes modulares de Astro
+├── components/
+│   ├── ArticleCard.astro
+│   ├── Footer.astro
+│   ├── FormacionSection.astro
 │   ├── Hero.astro
 │   ├── Nav.astro
 │   ├── ProjectCard.astro
 │   ├── PromptCard.astro
-│   ├── ArticleCard.astro
-│   ├── FormacionSection.astro
-│   ├── ReposSection.astro
-│   └── Footer.astro
-├── layouts/               ← 📐 Plantilla base del sitio
+│   └── ReposSection.astro
+├── content/
+│   ├── articulos/
+│   ├── certificaciones/
+│   ├── prompts/
+│   ├── proyectos/
+│   ├── repos/
+│   └── titulos/
+├── layouts/
 │   └── Base.astro
-├── pages/                 ← 🌐 Rutas del sitio por idioma
-│   ├── es/index.astro     → Versión en Español
-│   └── en/index.astro     → Versión en Inglés
-└── styles/                ← 🎨 Estilos globales
+├── pages/
+│   ├── en/
+│   │   └── index.astro
+│   └── es/
+│       └── index.astro
+└── styles/
     └── global.css
 public/
-├── logos/                 ← SVGs de marcas (AWS, MIT, DataCamp…)
-└── pdfs/                  ← Currículums descargables (cv-es.pdf / cv-en.pdf)
-
-
+├── logos/
+└── pdfs/
+```
 
 ---
 
 ## ✍️ Gestión de Contenido (Añadir nuevos elementos)
 
 El contenido se gestiona en **pares de archivos Markdown** (`.es.md` y `.en.md`). Para añadir un elemento, crea ambos archivos en su respectiva carpeta de `src/content/` y rellena el *frontmatter* siguiendo estas plantillas:
-
-### 🚀 Proyectos (`src/content/proyectos/`)
-
-yaml
-idioma: "es" # "es" o "en"
-titulo: "Análisis de Churn con LLMs"
-fecha: 2026-01-15
-resumen: "Sistema predictivo de fuga de clientes integrando embeddings y clasificadores tradicionales."
-stack: ["Python", "Scikit-learn", "OpenAI API"]
-repo: "[https://github.com/nachoatm/repo](https://github.com/nachoatm/repo)"   # Opcional
-demo: "[https://demo.com](https://demo.com)"                   # Opcional
-destacado: true                            # true para fijarlo en la home
-icono: "brain"                             # Ver catálogo de iconos abajo
-badge: "TFM"                               # Opcional (ej: "Proyecto", "Freelance")
-
-
-
-### 📜 Certificaciones (`src/content/certificaciones/`)
-
-yaml
-idioma: "es"
-titulo: "AWS Certified Solutions Architect"
-emisor: "Amazon Web Services"               # Debe coincidir exactamente con la clave de brandLogos
-fecha: 2025-01-15
-categoria: "Cloud"
-logo: "AWS"
-enlace_verificacion: "https://..."         # Opcional
-credencial_id: "AWS-12345"                 # Opcional
-
-
-
-### 📰 Artículos (`src/content/artículos/`)
-
-yaml
-idioma: "es"
-titulo: "El futuro de los Agentes Autónomos en Odoo"
-fuente: "Medium / Propio"
-fecha: 2026-01-01
-url: "https://..."
-resumen: "Análisis sobre cómo los agentes de IA pueden automatizar flujos de trabajo complejos en ERPs."
-tags: ["Odoo", "AI Agents", "Python"]
-
-
-
-### 💡 Prompts (`src/content/prompts/`)
-
-yaml
-idioma: "es"
-titulo: "Generador de Test Unitarios para Odoo"
-categoria: "Data Engineering"
-descripcion: "Estructura prompts para forzar a la IA a escribir tests de Odoo siguiendo las buenas prácticas oficiales."
-tags: ["Odoo", "Testing", "Prompting"]
-
 
 
 > **Nota:** El cuerpo del archivo Markdown (`.md`) de los prompts se convertirá automáticamente en el texto copiable de la tarjeta en la interfaz.
@@ -201,7 +150,9 @@ Cada vez que realizas un `push` a la rama `main`, el archivo `.github/workflows/
 
 # Pasos para actualizar el portfolio en vivo:
 git add .
+
 git commit -m "feat: añade nuevo proyecto de NLP"
+
 git push origin main
 
 
