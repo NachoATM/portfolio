@@ -6,5 +6,5 @@ resumen: "Predictive models on real-time IoT data for intelligent climate contro
 stack: ["XGBoost", "Time Series", "IoT", "Python"]
 destacado: true
 icono: "zap"
-badge: "Master's Thesis · Ongoing"
+badge: "Master's Thesis"
 ---

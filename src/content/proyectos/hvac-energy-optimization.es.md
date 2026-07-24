@@ -6,5 +6,5 @@ resumen: "Modelos predictivos sobre datos IoT en tiempo real para ajuste intelig
 stack: ["XGBoost", "Series Temporales", "IoT", "Python"]
 destacado: true
 icono: "zap"
-badge: "TFM · En curso"
+badge: "TFM"
 ---
